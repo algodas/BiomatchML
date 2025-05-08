@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparador Biométrico</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 360px;
+    }
+    h1 {
+      margin-bottom: 24px;
+      color: #2f3640;
+    }
+    input[type="file"] {
+      display: block;
+      margin: 10px auto 20px auto;
+      border: 1px solid #dcdde1;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #353b48;
+    }
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    input[type="submit"] {
+      background: #0984e3;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    input[type="submit"]:hover {
+      background: #74b9ff;
+    }
+    .link-demo {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .link-demo a {
+      color: #0984e3;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Comparar Impressões Digitais</h1>
+    <form action="/match" method="post" enctype="multipart/form-data">
+      <input type="file" name="img1" accept=".bmp" required>
+      <input type="file" name="img2" accept=".bmp" required>
+      <label><input type="checkbox" name="heatmap"> Mostrar mapa de calor (Grad-CAM)</label>
+      <input type="submit" value="Comparar">
+    </form>
+    <div class="link-demo">
+      <p>📥 <a href="/demo_images" target="_blank">Baixar imagens de exemplo</a></p>
+    </div>
+  </div>
+</body>
+</html>
+ 
