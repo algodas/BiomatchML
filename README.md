@@ -1,75 +1,35 @@
+🧬 Biometric Comparator with Siamese Neural Network
+This project implements a fingerprint comparator using a Siamese neural network with support for Grad-CAM visualizations.
 
-# 🧬 Fingerprint Comparator with Siamese Network
+⚙️ Features
+BMP image comparison
 
-This project implements a biometric fingerprint comparator using a lightweight Siamese Neural Network (CNN) with a modern web interface. It's designed for use in environments with limited hardware (CPU-only) and provides real-time comparison as well as visual heatmap explanations via Grad-CAM.
+Web interface with upload and Grad-CAM support
 
-## 🚀 Features
+Flask API deployed with Gunicorn + NGINX
 
-- Upload and compare two fingerprint BMP images
-- Displays similarity score and match decision (`MATCH` or `NO MATCH`)
-- Optional Grad-CAM heatmaps showing areas of most attention
-- Stylish, mobile-friendly frontend
-- Lightweight model deployable without GPU
+Automatic training via train.py
 
-## 🧪 Dataset Used
+🚀 Automatic Installation
+bash
+Copiar
+Editar
+chmod +x setup.sh
+./setup.sh
+🧪 Dataset Used
+Use the SOCOFing Dataset or your own images placed in the training directory.
 
-- **SOCOFing Dataset**: 6000+ real and altered fingerprint images in BMP format
-- Includes variation by rotation, noise, cuts, and partial captures
+📁 Project Structure
+app.py: Main Flask API
 
-## 📦 Project Structure
+train.py: Training script for the Siamese model
 
-```
-fingerprint-app/
-├── app.py                  # Flask API with web interface
-├── cam_utils.py            # Grad-CAM visualization module
-├── train.py                # Model training script (CPU friendly)
-├── model/                  # Folder for the trained model (.h5)
-├── templates/upload.html   # Web interface (styled)
-├── requirements.txt        # Python dependencies
-├── README.md               # This file
-└── deploy/                 # Deployment configs (NGINX + Gunicorn)
-```
+cam_utils.py: Grad-CAM heatmap generation
 
-## 📥 Installation
+templates/upload.html: Web interface
 
-```bash
-git clone https://github.com/yourname/fingerprint-app.git
-cd fingerprint-app
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+model/: Folder where the .h5 model is saved
 
-## 🧠 Training
+demo_images/: Sample images
 
-```bash
-python train.py
-# The trained model will be saved at model/siamese_model.h5
-```
-
-## ▶️ Run Locally
-
-```bash
-python app.py
-# Visit http://localhost:5000
-```
-
-## 🔧 Deployment with Gunicorn + NGINX
-
-- Copy `deploy/gunicorn.service` to `/etc/systemd/system/`
-- Start and enable:
-```bash
-sudo systemctl start gunicorn
-sudo systemctl enable gunicorn
-```
-
-- Copy `deploy/nginx.conf` to `/etc/nginx/sites-available/fingerprint`
-- Enable site and restart NGINX:
-```bash
-sudo ln -s /etc/nginx/sites-available/fingerprint /etc/nginx/sites-enabled/
-sudo systemctl restart nginx
-```
-
-## 🧊 License
-
-This project is for educational and exploratory use.
+deploy/: System configuration files
