@@ -12,7 +12,7 @@ sudo mkdir -p /opt/fingerprint-app
 sudo chown $USER:$USER /opt/fingerprint-app
 
 echo "📂 Copiando arquivos do projeto..."
-unzip fingerprint-app-completo.zip -d /opt/
+unzip BiomatchML-main.zip -d /opt/
 cd /opt/fingerprint-app
 
 echo "🐍 Criando ambiente virtual..."
