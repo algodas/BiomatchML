@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Comparador Biométrico</title>
+  <title>Siamese-based Embedding Comparison</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -68,17 +68,23 @@
 </head>
 <body>
   <div class="container">
-    <h1>Comparar Impressões Digitais</h1>
+	  <h1>Fingerprint Matching</h1> <h2> Siamese-based Embedding Comparison</h2>
+<p>🔍 In addition to the similarity score and Grad-CAM heatmaps, this tool also displays <strong>automatically detected keypoints (minutiae)</strong> on each fingerprint.</p>
+
     <form action="/match" method="post" enctype="multipart/form-data">
       <input type="file" name="img1" accept=".bmp" required>
       <input type="file" name="img2" accept=".bmp" required>
-      <label><input type="checkbox" name="heatmap"> Mostrar mapa de calor (Grad-CAM)</label>
-      <input type="submit" value="Comparar">
+      <label><input type="checkbox" name="heatmap" checked> Show Heatmap (Grad-CAM)</label>
+      <input type="submit" value="Match Now">
     </form>
     <div class="link-demo">
-      <p>📥 <a href="/demo_images" target="_blank">Baixar imagens de exemplo</a></p>
+      <p>📥 <a href="/demo_images" target="_blank">Download Sample Images</a></p>
+      <p>🤝 <a href="https://www.linkedin.com/in/algodas/" target="_blank">Let’s connect on LinkedIn</a></p>
+      <p>📂 <a href="https://github.com/algodas/BiomatchML.git" target="_blank">View Project on GitHub</a></p>
+      <p>📂 <a href="Manual_tech_biomatchML.pdf" target="_blank">User Manual and Technical Details</a></p>
     </div>
   </div>
 </body>
 </html>
  
+
