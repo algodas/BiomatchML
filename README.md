@@ -49,4 +49,50 @@ Install dependencies with:
 
 ```bash
 pip install -r requirements.txt
+```
 
+### You will need:
+
+- TensorFlow  
+- Flask  
+- OpenCV  
+- scikit-image  
+- NumPy  
+
+---
+
+## 📁 File Structure
+
+```
+app.py                  # Main Flask server  
+upload.html             # Web interface  
+model/siamese_model.h5  # Pretrained fingerprint matching model  
+cam_utils.py            # Grad-CAM generation and overlay tools  
+requirements.txt        # Python dependencies  
+```
+
+---
+
+## 📡 How to Run
+
+```bash
+python app.py
+```
+
+Then open your browser at: [http://localhost:5000](http://localhost:5000)
+
+---
+
+## 🧪 Future Ideas
+
+- Auto-tuning of threshold based on feedback  
+- One-to-many fingerprint search  
+- Finger classification (thumb, index, etc.)  
+- Fingerprint spoof/liveness detection  
+
+---
+
+## 👤 Author
+
+Developed by [@algodas](https://www.linkedin.com/in/algodas)  
+💬 Contact me for collaborations or suggestions!
