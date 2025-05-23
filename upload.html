@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Siamese-based Embedding Comparison</title>
+  <title>Biometric Matcher (1:1 and 1:N)</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -19,29 +19,28 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
-      width: 360px;
+      width: 400px;
     }
-    h1 {
-      margin-bottom: 24px;
+    h1, h2 {
+      margin-bottom: 12px;
       color: #2f3640;
     }
-    input[type="file"] {
+    input[type="file"], select {
       display: block;
-      margin: 10px auto 20px auto;
+      margin: 10px auto;
       border: 1px solid #dcdde1;
-      padding: 6px;
+      padding: 8px;
       border-radius: 4px;
+      width: 100%;
     }
     label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
+      display: block;
+      margin: 10px 0 4px;
       font-size: 14px;
       color: #353b48;
     }
     input[type="checkbox"] {
-      margin-right: 8px;
+      margin-right: 6px;
     }
     input[type="submit"] {
       background: #0984e3;
@@ -52,12 +51,13 @@
       font-size: 15px;
       cursor: pointer;
       transition: background 0.3s;
+      margin-top: 16px;
     }
     input[type="submit"]:hover {
       background: #74b9ff;
     }
     .link-demo {
-      margin-top: 10px;
+      margin-top: 16px;
       font-size: 14px;
     }
     .link-demo a {
@@ -68,23 +68,59 @@
 </head>
 <body>
   <div class="container">
-	  <h1>Fingerprint Matching</h1> <h2> Siamese-based Embedding Comparison</h2>
-<p>🔍 In addition to the similarity score and Grad-CAM heatmaps, this tool also displays <strong>automatically detected keypoints (minutiae)</strong> on each fingerprint.</p>
+    <h1>Fingerprint Matcher</h1>
+    <h2>Siamese Network – 1:1 or 1:N</h2>
+    <p>🔍 Upload a fingerprint image and choose the comparison mode below:</p>
 
     <form action="/match" method="post" enctype="multipart/form-data">
-      <input type="file" name="img1" accept=".bmp" required>
-      <input type="file" name="img2" accept=".bmp" required>
-      <label><input type="checkbox" name="heatmap" checked> Show Heatmap (Grad-CAM)</label>
-      <input type="submit" value="Match Now">
+      <label for="img1">🖼️ Query Fingerprint:</label>
+      <input type="file" name="img1" id="img1" accept=".bmp" required>
+
+      <label for="mode">⚙️ Comparison Mode:</label>
+      <select name="mode" id="mode">
+        <option value="1to1" selected>1:1 – Compare with a specific image</option>
+        <option value="1toN">1:N – Search against the fingerprint database</option>
+      </select>
+
+      <div id="img2-section">
+        <label for="img2">📁 Candidate Image (only for 1:1):</label>
+        <input type="file" name="img2" id="img2" accept=".bmp">
+      </div>
+
+      <label>
+        <input type="checkbox" name="heatmap" checked>
+        Show heatmap (Grad-CAM)
+      </label>
+
+      <input type="submit" value="🔍 Run Comparison">
     </form>
+
     <div class="link-demo">
-      <p>📥 <a href="/demo_images" target="_blank">Download Sample Images</a></p>
-      <p>🤝 <a href="https://www.linkedin.com/in/algodas/" target="_blank">Let’s connect on LinkedIn</a></p>
-      <p>📂 <a href="https://github.com/algodas/BiomatchML.git" target="_blank">View Project on GitHub</a></p>
-      <p>📂 <a href="Manual_tech_biomatchML.pdf" target="_blank">User Manual and Technical Details</a></p>
+      <p>📥 <a href="/demo_images" target="_blank">Download sample images</a></p>
+      <p>📚 <a href="Manual_tech_biomatchML.pdf" target="_blank">Technical manual</a></p>
+      <p>🌐 <a href="https://github.com/algodas/BiomatchML" target="_blank">View on GitHub</a></p>
+      <p>🤝 <a href="https://www.linkedin.com/in/algodas/" target="_blank">Connect on LinkedIn</a></p>
     </div>
+
+    <script>
+      const modeSelect = document.getElementById("mode");
+      const img2Section = document.getElementById("img2-section");
+      const img2Input = document.getElementById("img2");
+
+      function toggleImg2Visibility() {
+        if (modeSelect.value === "1toN") {
+          img2Section.style.display = "none";
+          img2Input.required = false;
+        } else {
+          img2Section.style.display = "block";
+          img2Input.required = true;
+        }
+      }
+
+      modeSelect.addEventListener("change", toggleImg2Visibility);
+      window.onload = toggleImg2Visibility;
+    </script>
   </div>
 </body>
 </html>
  
-
