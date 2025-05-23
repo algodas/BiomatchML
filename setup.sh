@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 echo "🔧 Atualizando pacotes..."
@@ -22,6 +21,15 @@ source venv/bin/activate
 echo "📦 Instalando dependências Python..."
 pip install --upgrade pip
 pip install -r requirements.txt
+
+echo "📁 Verificando estrutura da base de dados..."
+mkdir -p database/imagens
+
+echo "📥 Copie suas imagens .bmp para o diretório: /opt/fingerprint-app/database/imagens"
+read -p "Pressione Enter para continuar após adicionar as imagens..."
+
+echo "🧠 Gerando base vetorial de embeddings..."
+python3 create_database.py
 
 echo "🔐 Configurando serviço Gunicorn..."
 sudo cp deploy/gunicorn.service /etc/systemd/system/gunicorn.service
